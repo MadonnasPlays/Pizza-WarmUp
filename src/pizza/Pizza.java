@@ -89,16 +89,47 @@ public class Pizza {
 		private int L;
 		private int H;
 		private boolean overlap;
+		private int firstRow,firstColumn,secondRow,secondColumn;
 		
-		private void Slice(int leastCells, int highestCells) {
-			this.L=leastCells;
-			this.H=highestCells;
+		private void Slice() {
+			
 		}
-		private void setRows(int rows) {
-			this.rows=rows;
+		private void Slice(int firstRow, int firstColumn , int secondRow,int secondColumn) {
+			this.firstRow=firstRow;
+			this.firstColumn=firstColumn;
+			this.secondRow=secondRow;
+			this.secondColumn=secondColumn;
 		}
-		private void setColumns(int columns) {
+		
+		public int getColumns() {
+			return columns;
+		}
+		public void setColumns(int columns) {
 			this.columns = columns;
+		}
+		public int getFirstRow() {
+			return firstRow;
+		}
+		public void setFirstRow(int firstRow) {
+			this.firstRow = firstRow;
+		}
+		public int getSecondRow() {
+			return secondRow;
+		}
+		public void setSecondRow(int secondRow) {
+			this.secondRow = secondRow;
+		}
+		public void setL(int l) {
+			L = l;
+		}
+		public void setH(int h) {
+			H = h;
+		}
+		public void setFirstColumn(int firstColumn) {
+			this.firstColumn = firstColumn;
+		}
+		public void setSecondColumn(int secondColumn) {
+			this.secondColumn = secondColumn;
 		}
 		//this may change kappa
 		private boolean checkSliceOverlap() {
