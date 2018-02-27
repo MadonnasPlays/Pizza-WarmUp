@@ -1,9 +1,11 @@
 package pizza;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Pizza {
 	
@@ -14,7 +16,7 @@ public class Pizza {
 	private int L;
 	private int H;
 	
-	private Cell[] cells;
+	private Cell[][] cells;
 	
 	
 	Pizza(){}
@@ -22,11 +24,24 @@ public class Pizza {
 	private void readFromFile(String fileName) {
 		
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(fileName));
+			Scanner scanner = new Scanner(new File(fileName));
 		
-			this.rows = in.read();
-			this.columns = in.read();
-		
+			this.rows = scanner.nextInt();
+			this.columns = scanner.nextInt();
+			this.L = scanner.nextInt();
+			this.H = scanner.nextInt();
+			scanner.skip("\n");
+			
+			cells = new Cell[rows][columns];
+			
+			for(int i =0 ; i < rows; i++){
+				
+				String temp = scanner.nextLine();
+				System.out.println(temp);
+				for(int j=0;j < columns; j++) {
+					cells[i][j] = new Cell(temp.charAt(j));
+				}
+			}
 		} catch (FileNotFoundException e) {
 			System.out.println("File Not found!");
 			e.printStackTrace();
@@ -38,15 +53,22 @@ public class Pizza {
 	}
 	
 	private class Cell{
-		private final static int MUSHROOM = 1;
-		private final static int TOMATO = 2;
+		private final static char MUSHROOM = 'M';
+		private final static char TOMATO = 'T';
 		
 		
 		private int type;
 		
 		Cell(){
-			type = 0;
+			
 		}
+		
+		Cell(char type) {
+			if(type == MUSHROOM || type == TOMATO) {
+				this.type = type; 
+			}
+		}
+		
 
 		public int getType() {
 			return type;
@@ -86,5 +108,11 @@ public class Pizza {
 			return overlap;
 		}
 		//overlap may need to get smarter!!!
+	}
+	
+	
+	public static void main(String[] args) {
+		Pizza pizza = new Pizza();
+		pizza.readFromFile("data/example.in");
 	}
 }
