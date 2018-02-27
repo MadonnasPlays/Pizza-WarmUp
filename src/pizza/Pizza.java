@@ -25,7 +25,6 @@ public class Pizza {
 		
 		try {
 			Scanner scanner = new Scanner(new File(fileName));
-		
 			this.rows = scanner.nextInt();
 			this.columns = scanner.nextInt();
 			this.L = scanner.nextInt();
@@ -39,7 +38,7 @@ public class Pizza {
 				String temp = scanner.nextLine();
 				System.out.println(temp);
 				for(int j=0;j < columns; j++) {
-					cells[i][j] = new Cell(temp.charAt(j));
+					cells[i][j] = new Cell(temp.charAt(j),i,j);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -56,16 +55,20 @@ public class Pizza {
 		private final static char MUSHROOM = 'M';
 		private final static char TOMATO = 'T';
 		
-		
+		//cell type, must be either mushroom or tomato
 		private int type;
 		
-		Cell(){
-			
-		}
+		//cell coordinates on map
+		private int r;
+		private int c;
 		
-		Cell(char type) {
+		Cell(){}
+		
+		Cell(char type, int r,int c) {
 			if(type == MUSHROOM || type == TOMATO) {
 				this.type = type; 
+				this.r = r;
+				this.c = c;
 			}
 		}
 		
