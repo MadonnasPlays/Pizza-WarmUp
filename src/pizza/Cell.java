@@ -2,11 +2,13 @@ package pizza;
 
 
 public class Cell{
-	private final static char MUSHROOM = 'M';
-	private final static char TOMATO = 'T';
+	public final static char MUSHROOM = 'M';
+	public final static char TOMATO = 'T';
 	
 	//cell type, must be either mushroom or tomato
-	private int type;
+	private char type;
+	
+	private boolean used;
 	
 	//cell coordinates on map
 	private int r;
@@ -20,6 +22,7 @@ public class Cell{
 			this.r = r;
 			this.c = c;
 		}
+		used = false;
 	}
 	
 
@@ -27,10 +30,36 @@ public class Cell{
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(char type) {
 		if(type == Cell.MUSHROOM || type == Cell.TOMATO)
 			this.type = type;
 	}
+
+	public boolean isUsed() {
+		return used;
+	}
+
+	public void setUsed(boolean used) {
+		this.used = used;
+	}
+
+	public int getR() {
+		return r;
+	}
+
+	public void setR(int r) {
+		this.r = r;
+	}
+
+	public int getC() {
+		return c;
+	}
+
+	public void setC(int c) {
+		this.c = c;
+	}
+	
+	
 	
 	
 }
